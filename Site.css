@@ -14,11 +14,33 @@
     border-radius: 6px;
 }
 .Signbody{
-    height: 25vh;
-    width: 15vw;
+    height: 172px;
+    width: 207px;
     padding: 10px;
     background-color: mediumpurple;
     border: solid 1px;
     text-align: center;
-    border-radius: 6px
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.SignUpBody {
+    height: 260px;
+    width: 207px;
+    padding: 10px;
+    border: solid 1px;
+    border-radius: 6px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25vh;
+    display: block;
+    color: #83ccf0;
+    background-color: #2f4f7b;
+}
+
+body {
+    background-color: #071952;
 }
