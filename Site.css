@@ -6,6 +6,7 @@
     display: inline-block;
     border-radius: 6px;
 }
+
 #button2 {
     border: none;
     color: indigo;
@@ -13,6 +14,7 @@
     display: inline-block;
     border-radius: 6px;
 }
+
 .Signbody{
     height: 172px;
     width: 207px;
@@ -23,6 +25,7 @@
     border-radius: 6px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 25vh;
     display: block;
 }
 
@@ -44,3 +47,21 @@
 body {
     background-color: #071952;
 }
+
+.AllButton{
+    height: 100px;
+    width: 265px;
+    text-align: center;
+    display: block;
+    margin-left: 83%;
+    margin-top: 5px;
+}
+
+.GSButton {
+    border: solid 1px;
+    border-radius: 6px;
+    color: darkgrey;
+    padding: 10px;
+    background-color: #071952;
+}
+
