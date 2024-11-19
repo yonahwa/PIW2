@@ -1,4 +1,4 @@
-#button1 {
+.button1 {
     border: none;
     background-color: indigo;
     color: white;
@@ -7,7 +7,7 @@
     border-radius: 6px;
 }
 
-#button2 {
+.button2 {
     border: none;
     color: indigo;
     padding: 10px;
