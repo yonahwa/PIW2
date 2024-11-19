@@ -1,70 +1,50 @@
 //test
 
-//Décommenter pour voir le résultat
-let db = '';
-let openRequest = indexedDB.open('db', 1);
 
-openRequest.onupgradeneeded = function(){
-    db = openRequest.result;
+// Créer un curseur pour parcourir les enregistrements
+let cursorRequest = users.openCursor();
 
-    //Si l'objet de stockage users n'existe pas, on le crée
-    if (!db.objectStoreNames.contains('users')){
-        db.createObjectStore('users', {keyPath: 'id'});
+cursorRequest.onsuccess = function (event) {
+    let cursor = event.target.result;
+    if (cursor) {
+        // Ajouter l'enregistrement actuel au tableau
+        usersArray.push(cursor.value);
+
+        // Passer à l'enregistrement suivant
+        cursor.continue();
+    } else {
+        // Tous les enregistrements ont été parcourus
+        console.log('Tous les utilisateurs :', usersArray);
     }
 };
 
-openRequest.onerror = function(){
-    alert('Impossible d\'accéder à IndexedDB');
+
+// L'attribut que vous souhaitez vérifier
+let emailToCheck = 'example@example.com'; // Remplacez par l'email que vous voulez vérifier
+
+// Créer une requête pour trouver l'utilisateur par email
+let index = users.index('email'); // Assurez-vous que l'index existe
+let getRequest = index.get(emailToCheck);
+
+getRequest.onsuccess = function (event) {
+    if (event.target.result) {
+        console.log('Un utilisateur avec cet email existe déjà :', event.target.result);
+    } else {
+        console.log('Aucun utilisateur avec cet email trouvé.');
+    }
 };
 
-openRequest.onsuccess = function(){
-    db = openRequest.result;
-    let transaction = db.transaction('users', 'readwrite');
-    
-    transaction.oncomplete = function(){
-        alert('Transaction terminée');
-    };
-
-    let users = transaction.objectStore('users');
-    
-    let user = {
-        id: 1,
-        prenom: 'Pierre',
-        mail: 'pierre.giraud@edhec.com',
-        inscription: new Date()
-    };
-    
-    let ajout = users.add(user);
-    
-    ajout.onsuccess = function(){ 
-        alert('Utilisateur ajouté avec la clef ' + ajout.result);
-    };
-    
-    ajout.onerror = function(){
-        alert('Erreur : ' + ajout.error);
-    };
+getRequest.onerror = function (event) {
+    console.error('Erreur lors de la recherche de l\'utilisateur :', event.target.error);
 };
 
-// Supposons que vous ayez déjà ouvert la base de données et que `db` soit votre instance de base de données
 
-let transaction = db.transaction('users', 'readwrite'); // Ouvrir la transaction
-let objectStore = transaction.objectStore('users'); // Accéder à l'objet de stockage 'users'
+// may be interesting
 
-// Créer un nouvel enregistrement à ajouter
-let newUser = {
-    id: 1, // Assurez-vous que l'identifiant est unique
-    name: 'John Doe',
-    email: 'john.doe@example.com'
-};
+let dbRequest = indexedDB.open('nom_de_votre_base_de_donnees', version);
 
-// Ajouter le nouvel enregistrement à l'objet de stockage
-let request = objectStore.add(newUser);
-
-// Gérer les événements de succès et d'erreur
-request.onsuccess = function (event) {
-    console.log('Utilisateur ajouté avec succès:', event.target.result);
-};
-
-request.onerror = function (event) {
-    console.error('Erreur lors de l\'ajout de l\'utilisateur:', event.target.error);
+dbRequest.onupgradeneeded = function (event) {
+    let db = event.target.result;
+    let objectStore = db.createObjectStore('users', { keyPath: 'id' });
+    objectStore.createIndex('email', 'email', { unique: true });
 };
