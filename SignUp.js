@@ -4,23 +4,25 @@ enregistre.addEventListener('click', CreateAccount)
 
 function CreateAccount() {
 
-    let Name = document.getElementById("Name").value
-    let MDP = document.getElementById("password").value
-    let mail = document.getElementById("Email").value
 
     let db = '';
     let openRequest = indexedDB.open('account', 1)
 
     openRequest.onupgradeneeded = function () {
+        
         db = openRequest.result;
 
         if (!db.objectStoreNames.contains('users')) {
-            db.createObjectStore('users', { keyPath: 'id' });
+            db.createObjectStore('users', { keyPath: 'UserName' });
         }
 
     }
 
-    openRequest.onsuccess = function(){
+    openRequest.onsuccess = function () {
+        let Name = document.getElementById("Name").value
+        let MDP = document.getElementById("password").value
+        let mail = document.getElementById("Email").value
+        
         db = openRequest.result;
         let transaction = db.transaction('users', 'readwrite');
         
@@ -31,14 +33,33 @@ function CreateAccount() {
         let users = transaction.objectStore('users');
 
         let user = {
-            id: 1,
+            UserName: Name,
             Mdp: MDP,
             eMail: mail,
             point: 0
         }
 
-        
-        let ajout = users.add(user);
+        let indexEM = users.index('eMail');
+        let indexN = user.index('UserName');
+
+        let getRequestM = indexEM.get(mail);
+        let getRequestN = indexN.get(Name);
+
+        getRequestN.onsuccess = function (event) {
+            if (event.target.result) {
+                console.log('Utilisateur avec ce Name existe déja')
+            }
+            else {
+                getRequestM.onsuccess = function (event) {
+                    if (event.target.result) {
+                        console.log('Utilisateur avec cette email existe déja')
+                    }
+                    else {
+                        let ajout = users.put(user);
+                    }
+                }
+            }
+        }
 
         ajout.onsuccess = function () {
             console.log("Le compte a été ajouter a la table")
