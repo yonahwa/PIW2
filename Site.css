@@ -11,8 +11,14 @@
     border: none;
     color: indigo;
     padding: 10px;
-    display: inline-block;
+    display: inline;
     border-radius: 6px;
+}
+
+.counter-display{
+    color:yellow;
+    display: inline-block;
+
 }
 
 .Signbody{
@@ -49,10 +55,11 @@ body {
 }
 
 .AllButton{
+    /*need transform*/
     height: 100px;
     width: 265px;
     text-align: center;
-    display: block;
+    display: inline;
     margin-left: 83%;
     margin-top: 5px;
 }
@@ -66,9 +73,17 @@ body {
 }
 
 .Waluigi{
-    margin-top : 60px;
-    margin-left : auto;
-    margin-right : auto;
-
+    transform: translate(50vw,50vh);
+    background : transparent;
+    border : none;
+    animation: spin 3s linear infinite;
 }
 
+@keyframes spin {
+    from {
+        transform: translate(calc(50vw - 160px),calc(50vh - 320px)) rotate(0deg)
+    }
+    to {
+        transform: translate(calc(50vw - 160px),calc(50vh - 320px)) rotate(360deg)
+    }
+}
