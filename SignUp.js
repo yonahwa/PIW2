@@ -1,10 +1,9 @@
 const enregistre = document.getElementById("Save")
 
+const search = document.getElementById("Search")
+
 enregistre.addEventListener('click', CreateAccount)
-
-function CreateAccount() {
-
-
+{
     let db = '';
     let openRequest = indexedDB.open('account', 1)
 
@@ -77,7 +76,8 @@ function CreateAccount() {
 
 }
 
-function SearchAccount() {
+search.addEventListener('click', CreateAccount)
+{
     let Name = document.getElementById("Name").value
     let MDP = document.getElementById("password").value
     let mail = document.getElementById("Email").value
@@ -102,7 +102,7 @@ function SearchAccount() {
         }
 
         transaction.onerror = function () {
-            console.log
+            console.log("Problème de Transaction")
         }
 
         let users = transaction.objectStore('users');
@@ -112,6 +112,7 @@ function SearchAccount() {
         lire.onsuccess = function () {
             if (lire.result.Mdp == MDP) {
                 console.log("Connexion complete");
+                lire.result.point
             }
             else {
                 console.log("Mauvais Mot de Passe")

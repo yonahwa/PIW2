@@ -54,13 +54,13 @@ body {
     background-color: #071952;
 }
 
-.AllButton{
+.AllButton {
     /*need transform*/
     height: 100px;
     width: 265px;
     text-align: center;
     display: inline;
-    margin-left: 83%;
+    margin-left: 80%;
     margin-top: 5px;
 }
 
@@ -86,4 +86,21 @@ body {
     to {
         transform: translate(calc(50vw - 160px),calc(50vh - 320px)) rotate(360deg)
     }
+}
+
+.coin{
+    display: inline-block;
+}
+
+.Upgrade {
+    border: solid 1px;
+    border-radius: 6px;
+    background-color: powderblue;
+    display: inline-block;
+    width: 207px;
+    height: 196px;
+    text-align: center;
+}
+.titre{
+    text-size-adjust: 50%;
 }
