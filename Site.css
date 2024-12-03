@@ -92,7 +92,7 @@ body {
     display: inline-block;
 }
 
-.Upgrade {
+.Upgrade, .BgUpgrade {
     border: solid 1px;
     border-radius: 6px;
     background-color: powderblue;
