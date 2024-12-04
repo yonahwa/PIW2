@@ -3,19 +3,22 @@
 <head>
     <link rel="stylesheet" href="Site.css">
 </head>
+<body>
+    <div class="AllButton">
+        <button class="GSButton" onclick="location.href='Game.html'">Go back to game</button>
+    </div>
+    <form class="Signbody">
+        <label for="Name">Name</label><br />
+        <input type="text" id="Name" required /> <br /><br />
 
-    <body>
-        <form class="Signbody">
-            <label for="Name">Name</label><br />
-            <input type="text" id="Name" required /> <br /><br />
+        <label for="password">Mot de Passe</label>
+        <input type="text" id="password" required /> <br /><br />
 
-            <label for="password">Mot de Passe</label>
-            <input type="text" id="password" required /> <br /><br />
-
-            <button id="Search" class="button2">Sign in</button>
-            <button class="button1">Sign up</button>
-        </form>
-    </body>
+        <button id="Search" class="button2">Sign in</button>
+        <button class="button1">Sign up</button>
+    </form>
+</body>
 
 
 </html>
+<script src="SignUp.js"></script>

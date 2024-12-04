@@ -2,6 +2,32 @@ const enregistre = document.getElementById("Save")
 
 const search = document.getElementById("Search")
 
+function createCookie(user) {
+    const data = user;
+    const days = 2;
+    const date = new Data();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = "username" + user.UserName + "; " + "point" + user.point + "; " + expires + "; path=/";
+
+    console.log("cookie créé")
+}
+
+function readCookie() {
+    const name = "username"
+    const cookieArray = document.cookie.split(";")
+    let username = null;
+
+    for (let i = 0; i < cookiesArray.length; i++) {
+        let cookie = cookiesArray[i].trim();
+        if (cookie.indexOf(nameEQ) === 0) {
+            username = cookie.substring(nameEQ.length);
+            break;
+        }
+    }
+
+    console.log(username ? "Cookie found : " + username : "cookie not found")
+}
 enregistre.addEventListener('click', CreateAccount)
 {
     let db = '';
@@ -35,7 +61,11 @@ enregistre.addEventListener('click', CreateAccount)
             UserName: Name,
             Mdp: MDP,
             eMail: mail,
-            point: 0
+            point: 0,
+            blueMush: 0,
+            Mush: 0,
+            triplMush: 0,
+            megaMush: 0,
         }
 
         let indexEM = users.index('eMail');
@@ -55,6 +85,7 @@ enregistre.addEventListener('click', CreateAccount)
                     }
                     else {
                         let ajout = users.put(user);
+                        createCookie(user)
                     }
                 }
             }
@@ -113,6 +144,7 @@ search.addEventListener('click', CreateAccount)
             if (lire.result.Mdp == MDP) {
                 console.log("Connexion complete");
                 lire.result.point
+                createCookie(lire.result);
             }
             else {
                 console.log("Mauvais Mot de Passe")

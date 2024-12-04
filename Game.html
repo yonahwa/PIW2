@@ -4,12 +4,14 @@
 </head>
 
 <body>
-    <h1 class="counter-display">0</h1>
-    <img class="coin" src="Element/coins.png" />
+    <div class="Point">
+        <h1 class="counter-display">0</h1>
+        <img class="coin" src="Element/coins.png" />
+    </div>
     <div class="AllButton">
-        <button class="GSButton">Go back to store</button>
-        <button class="button2">Sign In</button>
-        <button class="button1">Sign Up</button>
+        <button class="GSButton" onclick="location.href='Store.html'">Go back to store</button>
+        <button class="button2" onclick="location.href='Login.html'">Sign In</button>
+        <button class="button1" onclick="location.href='SignUp.html'">Sign Up</button>
     </div>
     <div>
         <button class="Waluigi"><img src="Element/Waluigi.png"></button>
@@ -19,4 +21,5 @@
 
 
 </html>
+<script src="SignUp.js"></script>
 <script src="Game.js"></script>

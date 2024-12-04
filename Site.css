@@ -55,12 +55,11 @@ body {
 }
 
 .AllButton {
-    /*need transform*/
     height: 100px;
     width: 265px;
     text-align: center;
     display: inline;
-    margin-left: 80%;
+    margin-left: 73%;
     margin-top: 5px;
 }
 
@@ -88,7 +87,9 @@ body {
     }
 }
 
-.coin{
+
+.point{
+    width: 150px;
     display: inline-block;
 }
 
@@ -98,9 +99,16 @@ body {
     background-color: powderblue;
     display: inline-block;
     width: 207px;
-    height: 196px;
+    height: 251px;
     text-align: center;
+    margin-left: 15px;
 }
 .titre{
     text-size-adjust: 50%;
+}
+.Store{
+    width: 70%;
+    height: 60%;
+    margin-left: 13%;
+    align-content: center;
 }
